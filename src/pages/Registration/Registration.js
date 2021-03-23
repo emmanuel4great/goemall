@@ -1,5 +1,11 @@
 import react from "react";
+import "./styles.scss";
+import SignUp from "../../components/SignUp";
 
 export default function Registration() {
-  return <div>regisration</div>;
+  return (
+    <div>
+      <SignUp />
+    </div>
+  );
 }
