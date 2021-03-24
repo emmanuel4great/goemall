@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./styles.scss";
-import { signInWithGoogle, auth } from "./../../firebase/utils";
 
 import Button from "../forms/Button";
 import FormInput from "../forms/FormInput";
 import AuthWrapper from "../AuthWrapper";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import {
+  signInUser,
+  signInWithGoogle,
+  resetAllAuthForms,
+} from "../../redux/User/user.actions";
 
-const initialState = {
-  email: "",
-  password: "",
-};
+const mapState = ({ user }) => ({
+  signInSuccess: user.signInSuccess,
+});
 
-function SignIn() {
+function SignIn(props) {
+  const { signInSuccess } = useSelector(mapState);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // handleChange(e) {
-  //   const { name, value } = e.target;
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // }
 
   const resetForm = () => {
     setEmail("");
@@ -29,13 +29,27 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      resetForm();
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(signInUser({ email, password }));
+
+    // try {
+    //   await auth.signInWithEmailAndPassword(email, password);
+    //   resetForm();
+    //   props.history.push("/");
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
+
+  const handleGoogleSignIn = () => {
+    dispatch(signInWithGoogle());
+  };
+  useEffect(() => {
+    if (signInSuccess) {
+      resetForm();
+      dispatch(resetAllAuthForms());
+      props.history.push("/");
+    }
+  }, [signInSuccess]);
 
   const configureAuthWrapper = {
     headline: "LogIn",
@@ -62,7 +76,7 @@ function SignIn() {
           <Button type="submit">Login</Button>
           <div className="socialSignin">
             <div className="row">
-              <Button onClick={signInWithGoogle}>Sign in with Google</Button>
+              <Button onClick={handleGoogleSignIn}>Sign in with Google</Button>
             </div>
           </div>
           <div className="links">
@@ -74,4 +88,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default withRouter(SignIn);
