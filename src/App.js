@@ -15,6 +15,13 @@ import { useDispatch } from "react-redux";
 import { checkUserSession } from "./redux/User/user.actions";
 import Dashbaord from "./pages/Dashboard";
 import WithAuth from "./hoc/WithAuth";
+import Admin from "./pages/Admin";
+import WithAdminAuth from "./hoc/WithAdminAuth";
+import AdminToolbar from "./components/AdminToolbar";
+import AdminLayout from "./layouts/AdminLayout";
+import DashBoardLayout from "./layouts/DashboardLayout";
+import Search from "./pages/Search";
+import ProductDetails from "./pages/ProductDetails";
 
 function App(props) {
   const dispatch = useDispatch();
@@ -25,6 +32,7 @@ function App(props) {
 
   return (
     <div className="App">
+      <AdminToolbar />
       <Switch>
         <Route
           path="/"
@@ -34,6 +42,31 @@ function App(props) {
             </HomePageLayout>
           )}
           exact
+        />
+        <Route
+          path="/search"
+          render={() => (
+            <MainLayout>
+              <Search />
+            </MainLayout>
+          )}
+          exact
+        />
+        <Route
+          path="/search/:filterType"
+          render={() => (
+            <MainLayout>
+              <Search />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path="/product/:productID"
+          render={() => (
+            <MainLayout>
+              <ProductDetails />
+            </MainLayout>
+          )}
         />
         <Route
           path="/registration"
@@ -63,12 +96,23 @@ function App(props) {
           exact
         />
         <Route
+          path="/admin"
+          render={() => (
+            <WithAdminAuth>
+              <AdminLayout>
+                <Admin />
+              </AdminLayout>
+            </WithAdminAuth>
+          )}
+          exact
+        />
+        <Route
           path="/dashboard"
           render={() => (
             <WithAuth>
-              <MainLayout>
+              <DashBoardLayout>
                 <Dashbaord />
-              </MainLayout>
+              </DashBoardLayout>
             </WithAuth>
           )}
           exact
