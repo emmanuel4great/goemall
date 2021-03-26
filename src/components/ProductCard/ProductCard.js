@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
 import "./styles.scss";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductStart,
   setProduct,
 } from "../../redux/Products/products.actions";
 import Button from "../forms/Button";
+import { addProduct } from "../../redux/Cart/cart.actions";
 
 const mapState = (state) => ({
   product: state.productsData.product,
 });
 function ProductCard() {
   const { productID } = useParams();
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const { product } = useSelector(mapState);
@@ -26,6 +29,11 @@ function ProductCard() {
     };
   }, []);
 
+  const handleAddToCart = (product) => {
+    if (!product) return;
+    dispatch(addProduct(product));
+    history.push("/cart");
+  };
   const configAddToCartBtn = {
     type: "button",
   };
@@ -45,7 +53,12 @@ function ProductCard() {
           </li>
           <li>
             <div className="addToCart">
-              <Button {...configAddToCartBtn}>Add to cart</Button>
+              <Button
+                {...configAddToCartBtn}
+                onClick={() => handleAddToCart(product)}
+              >
+                Add to cart
+              </Button>
             </div>
           </li>
           <li>
