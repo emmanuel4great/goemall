@@ -1,5 +1,4 @@
-import axios from 'axios'
-
+import axios from "axios";
 
 export const checkUserIsAmin = (currentUser) => {
   if (!currentUser || !Array.isArray(currentUser.userRoles)) return false;
@@ -9,7 +8,6 @@ export const checkUserIsAmin = (currentUser) => {
   return false;
 };
 
-
 export const apiInstance = axios.create({
-  baseURL:'http://localhost:5001/goemall/us-central1/api'
-})
+  baseURL: "https://us-central1-goemall.cloudfunctions.net/api",
+});
