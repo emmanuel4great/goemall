@@ -76,9 +76,11 @@ function Checkout() {
                           Continue Shopping
                         </Button>
                       </td>
-                      <t>
-                        <Button>Checkout</Button>
-                      </t>
+                      <td>
+                        <Button onClick={() => history.push("/payment")}>
+                          Checkout
+                        </Button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>

@@ -1,3 +1,6 @@
+import axios from 'axios'
+
+
 export const checkUserIsAmin = (currentUser) => {
   if (!currentUser || !Array.isArray(currentUser.userRoles)) return false;
   const { userRoles } = currentUser;
@@ -5,3 +8,8 @@ export const checkUserIsAmin = (currentUser) => {
 
   return false;
 };
+
+
+export const apiInstance = axios.create({
+  baseURL:'http://localhost:5001/goemall/us-central1/api'
+})
