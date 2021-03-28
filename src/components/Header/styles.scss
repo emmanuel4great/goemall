@@ -1,6 +1,8 @@
+$small: 992px;
+
 .header {
   height: 6.5rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  display: block !important;
 
   .wrap {
     position: relative;
@@ -9,13 +11,18 @@
     height: 100%;
 
     .logo {
-      width: 13.8rem;
+      width: 8rem;
       position: absolute;
       top: 50%;
       left: 10px;
       -webkit-transform: translateY(-50%);
       -moz-transform: translateY(-50%);
       transform: translateY(-50%);
+      @media screen and (max-width: $small) {
+        color: white;
+        display: flex;
+        align-items: center;
+      }
       img {
         display: block;
         width: 100%;
@@ -45,7 +52,8 @@
           margin: 0 1rem;
 
           a {
-            font-size: 1.8rem;
+            // font-size: 0.9rem !important;
+            // font-weight: 600;
             line-height: 6.5rem;
             vertical-align: middle;
             color: black;
@@ -64,6 +72,10 @@
       -moz-transform: translateY(-50%);
       transform: translateY(-50%);
 
+      ul {
+        display: flex;
+      }
+
       ul,
       li {
         margin: 0;
@@ -77,14 +89,37 @@
           margin-right: 0;
         }
         a {
-          font-size: 1.8rem;
+          font-size: 0.9rem !important;
+          font-weight: 600;
           line-height: 1;
-          color: black;
+          // color: black;
+          color: white;
           text-decoration: none;
           text-transform: uppercase;
           cursor: pointer;
         }
       }
+    }
+  }
+}
+
+.drawerWrap {
+  width: 280px;
+  position: relative;
+  height: 100%;
+  .bgImage {
+    width: 280px;
+    position: absolute;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+  }
+  .wrap {
+    color: white;
+    padding: 2.5rem 0 2.5rem;
+    .icon {
+      color: white;
     }
   }
 }

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import AuthWrapper from "../AuthWrapper";
-import FormInput from "../forms/FormInput";
-import Button from "../forms/Button";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   resetPasswordStart,
   restUserState,
 } from "../../redux/User/user.actions";
+import { TextField, Button } from "@material-ui/core";
 
 const mapState = ({ user }) => ({
   resetPasswordSuccess: user.resetPasswordSuccess,
@@ -57,14 +56,25 @@ function EmailPassword(props) {
           </ul>
         )}
         <form onSubmit={handleSubmit}>
-          <FormInput
+          <TextField
             type="email"
             name="email"
             value={email}
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
+            fullWidth
           />
-          <Button type="submit">Email Password</Button>
+          <div className="actions">
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              fullWidth
+              size="large"
+            >
+              Email Password
+            </Button>
+          </div>
         </form>
       </div>
     </AuthWrapper>

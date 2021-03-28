@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { TextField, Button, Typography, Divider } from "@material-ui/core";
 import "./styles.scss";
 
-import Button from "../forms/Button";
+// import Button from "../forms/Button";
 import FormInput from "../forms/FormInput";
 import AuthWrapper from "../AuthWrapper";
 import { Link, useHistory } from "react-router-dom";
@@ -50,30 +51,68 @@ function SignIn() {
     <AuthWrapper {...configureAuthWrapper}>
       <div className="formWrap">
         <form onSubmit={handleSubmit}>
-          <FormInput
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <FormInput
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button type="submit">Login</Button>
-          <div className="socialSignin">
-            <div className="row">
-              <Button onClick={handleGoogleSignIn}>Sign in with Google</Button>
+          <div className="inputWrap">
+            <TextField
+              fullWidth
+              type="email"
+              name="email"
+              value={email}
+              label="Email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              fullWidth
+              type="password"
+              name="password"
+              label="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="actions">
+            <div className="links">
+              <Typography variant="body1" component={Link} to="/recovery">
+                Forget Password
+              </Typography>
+            </div>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              fullWidth
+              size="large"
+            >
+              Login
+            </Button>
+            <div className="dividersWrap">
+              <Divider className="divider" />
+              <Typography variant="body2" color="textSecondary">
+                OR
+              </Typography>
+              <Divider className="divider" />
+            </div>
+            <div className="socialSignin">
+              <div className="row">
+                <Button
+                  onClick={handleGoogleSignIn}
+                  color="secondary"
+                  variant="contained"
+                  disableElevation
+                >
+                  Sign in with Google
+                </Button>
+              </div>
             </div>
           </div>
-          <div className="links">
-            <Link to="/recovery">Reset Password</Link>
-          </div>
         </form>
+        <div className="otherAuthOption">
+          <Typography variant="body1" align="center" color="textSecondary">
+            Don't have an account?{" "}
+            <Typography component={Link} to="/registration" color="primary">
+              Register
+            </Typography>
+          </Typography>
+        </div>
       </div>
     </AuthWrapper>
   );

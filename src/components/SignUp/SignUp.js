@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
-import FormInput from "../forms/FormInput";
-import Button from "../forms/Button";
+import { TextField, Button, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
 import AuthWrapper from "../AuthWrapper";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,36 +72,61 @@ function SignUp(props) {
           </ul>
         )}
         <form onSubmit={handleFormSubmit}>
-          <FormInput
-            type="text"
-            name="displayName"
-            value={displayName}
-            placeholder="Full Name"
-            onChange={(e) => setDisplayName(e.target.value)}
-          />
-          <FormInput
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <FormInput
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <FormInput
-            type="password"
-            name="confirmPassword"
-            value={confirmPassword}
-            placeholder="Confirm Password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <Button type="submit">Register</Button>
+          <div className="inputWrap">
+            <TextField
+              fullWidth
+              type="text"
+              name="displayName"
+              value={displayName}
+              label="Full Name"
+              onChange={(e) => setDisplayName(e.target.value)}
+            />
+            <TextField
+              fullWidth
+              type="email"
+              name="email"
+              value={email}
+              label="Email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              fullWidth
+              type="password"
+              name="password"
+              value={password}
+              label="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <TextField
+              fullWidth
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              label="Confirm Password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <div className="actions">
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              // disableElevation
+              fullWidth
+              size="large"
+            >
+              Register
+            </Button>
+          </div>
         </form>
+        <div className="otherAuthOption">
+          <Typography variant="body1" align="center" color="textSecondary">
+            Don't have an account?{" "}
+            <Typography component={Link} to="/login" color="primary">
+              Login
+            </Typography>
+          </Typography>
+        </div>
       </div>
     </AuthWrapper>
   );
