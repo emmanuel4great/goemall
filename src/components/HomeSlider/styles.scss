@@ -1,0 +1,38 @@
+$large: 992px;
+$small: 991.99px;
+
+.homeSlider {
+  position: relative;
+  overflow: hidden;
+
+  @media screen and (max-width: $small) {
+    height: 300px;
+  }
+  @media screen and (min-width: $large) {
+    width: 55%;
+    height: 450px;
+    border-radius: 0.2rem;
+  }
+
+  .slideImage {
+    width: 100%;
+    object-fit: cover;
+
+    @media screen and (max-width: $small) {
+      height: 300px;
+    }
+    @media screen and (min-width: $large) {
+      height: 450px;
+    }
+  }
+
+  .stepperWrap {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .stepper {
+    background-color: transparent;
+  }
+}

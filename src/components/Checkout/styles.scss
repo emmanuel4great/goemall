@@ -1,45 +1,20 @@
 .checkout {
-  margin: 2rem auto;
-
-  h1 {
-    display: block;
-    width: 100%;
-  }
-
-  h1,
-  p {
-    text-align: center;
-  }
-
-  .checkoutHeader {
-    border-bottom: 1px solid black;
-  }
-
+  // margin: 2rem auto;
+  padding: 1rem;
+  margin: 0 auto;
   .cart {
     max-width: 100rem;
+    margin-top: 1rem;
+    width: 100%;
+    overflow: auto;
     margin: 0 auto;
     table {
       width: 100%;
     }
   }
-
-  .checkoutHeader,
-  .cart {
-    width: 100%;
-    text-align: left;
-    th,
-    td {
-      width: 22%;
-    }
-  }
-
-  .cartItem {
-    td img {
-      display: block;
-      width: 100%;
-    }
-  }
-  .cartBtn {
-    cursor: pointer;
+  .actionsWrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
   }
 }

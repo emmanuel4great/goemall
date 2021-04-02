@@ -6,9 +6,9 @@ $large: 992px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: -10px;
+    // margin-left: -10px;
     position: relative;
-    width: calc(100% + 20px);
+    width: 100%;
     height: 100%;
   }
   .authWrapperLayer {

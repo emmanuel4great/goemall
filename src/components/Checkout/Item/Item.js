@@ -5,6 +5,8 @@ import {
   addProduct,
   reduceCartItem,
 } from "../../../redux/Cart/cart.actions";
+import { TableRow, TableCell, IconButton } from "@material-ui/core";
+import Delete from "@material-ui/icons/Delete";
 
 function Item(product) {
   const dispatch = useDispatch();
@@ -29,36 +31,42 @@ function Item(product) {
   };
 
   return (
-    <table className="cartItem">
-      <tbody>
-        <tr>
-          <td>
-            <img src={productThumbnail} alt={productName} />
-          </td>
-          <td>{productName}</td>
-          <td>
-            <span
-              className="cartBtn"
-              onClick={() => handleReduceItem(product)}
-            >{`< `}</span>
-            <span>{quantity}</span>
-            <span
-              className="cartBtn"
-              onClick={() => handleAddProduct(product)}
-            >{` >`}</span>
-          </td>
-          <td>${productPrice}</td>
-          <td align="center">
-            <span
-              onClick={() => handleRemoveCartItem(documentID)}
-              className="cartBtn"
-            >
-              X
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <TableRow>
+      <TableCell align="left">
+        <img
+          src={productThumbnail}
+          alt={productName}
+          style={{ width: 60, height: 60, objectFit: "cover" }}
+        />
+      </TableCell>
+      <TableCell align="left">{productName}</TableCell>
+      <TableCell align="left">
+        <span
+          className="cartBtn"
+          onClick={() => handleReduceItem(product)}
+        >{`< `}</span>
+        <span>{quantity}</span>
+        <span
+          className="cartBtn"
+          onClick={() => handleAddProduct(product)}
+        >{` >`}</span>
+      </TableCell>
+      <TableCell align="left">${productPrice}</TableCell>
+      <TableCell align="center">
+        <IconButton
+          color="secondary"
+          onClick={() => handleRemoveCartItem(documentID)}
+        >
+          <Delete />
+        </IconButton>
+        {/* <span
+          onClick={() => handleRemoveCartItem(documentID)}
+          className="cartBtn"
+        >
+          X
+        </span> */}
+      </TableCell>
+    </TableRow>
   );
 }
 

@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import "./styles.scss";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductStart,
   setProduct,
 } from "../../redux/Products/products.actions";
-import Button from "../forms/Button";
+
 import { addProduct } from "../../redux/Cart/cart.actions";
+import { Typography, Button, Divider, Breadcrumbs } from "@material-ui/core";
+import SimilarProduct from "./SimilarProduct";
 
 const mapState = (state) => ({
   product: state.productsData.product,
@@ -20,7 +22,13 @@ function ProductCard() {
   const dispatch = useDispatch();
   const { product } = useSelector(mapState);
 
-  const { productName, productThumbnail, productPrice, productDesc } = product;
+  const {
+    productName,
+    productThumbnail,
+    productPrice,
+    productDesc,
+    productCategory,
+  } = product;
 
   useEffect(() => {
     dispatch(fetchProductStart(productID));
@@ -34,37 +42,79 @@ function ProductCard() {
     dispatch(addProduct(product));
     history.push("/cart");
   };
-  const configAddToCartBtn = {
-    type: "button",
-  };
 
   return (
     <div className="productCard">
-      <div className="hero">
-        <img src={productThumbnail} alt={productName} />
+      <div className="breadcrumb">
+        <Breadcrumbs aria-label="breadcrumb">
+          <Typography component={Link} color="inherit" to="/search">
+            All
+          </Typography>
+          <Typography component={Link} color="inherit" to="/search">
+            {productCategory === "mens" ? "Men" : "Women"}
+          </Typography>
+          <Typography color="textPrimary">{productName}</Typography>
+        </Breadcrumbs>
       </div>
-      <div className="productDetails">
-        <ul>
-          <li>
-            <h1>{productName}</h1>
-          </li>
-          <li>
-            <span>${productPrice}</span>
-          </li>
-          <li>
-            <div className="addToCart">
+      <div className="cardBody">
+        <div>
+          <div className="hero">
+            <img src={productThumbnail} alt={productName} />
+          </div>
+          <div className="addToCartDesktop">
+            <img src="/images/love.gif" height="30" alt="" />
+            <Typography color="textSecondary">Love it</Typography>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              onClick={() => handleAddToCart(product)}
+            >
+              Add to cart
+            </Button>
+          </div>
+        </div>
+        <div className="productDetails">
+          <ul>
+            <li>
+              <Typography variant="h4">{productName}</Typography>
+            </li>
+            <li>
+              <Typography variant="h5" color="error">
+                ${productPrice}
+              </Typography>
+              <Divider />
+            </li>
+            <li>
+              <Typography variant="h6">Product Features</Typography>
+              <Typography
+                variant="body2"
+                dangerouslySetInnerHTML={{ __html: productDesc }}
+              />
+            </li>
+          </ul>
+          <div className="addToCart">
+            <img src="/images/love.gif" height="30" alt="" />
+            <Typography color="textSecondary">Love it</Typography>
+            <div style={{ textAlign: "right" }}>
               <Button
-                {...configAddToCartBtn}
+                variant="contained"
+                color="secondary"
+                size="large"
                 onClick={() => handleAddToCart(product)}
               >
                 Add to cart
               </Button>
             </div>
-          </li>
-          <li>
-            <span dangerouslySetInnerHTML={{ __html: productDesc }} />
-          </li>
-        </ul>
+          </div>
+        </div>
+      </div>
+      <Divider />
+      <div className="similarProduct">
+        <Typography variant="h5" align="center">
+          Products you might also like
+        </Typography>
+        <SimilarProduct />
       </div>
     </div>
   );

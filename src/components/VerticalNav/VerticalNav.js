@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import UserProfile from "./../UserProfile";
 import "./styles.scss";
+import { Divider, Paper } from "@material-ui/core";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -15,11 +16,13 @@ function VerticalNav({ children }) {
   };
 
   return (
-    <div className="verticalNav">
+    <Paper className="verticalNav">
       <UserProfile {...configUserProfile} />
 
+      <Divider />
+
       <div className="menu">{children}</div>
-    </div>
+    </Paper>
   );
 }
 

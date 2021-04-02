@@ -19,7 +19,7 @@ export const handleFetchProducts = ({
   persistProducts = [],
 }) => {
   return new Promise((resolve, reject) => {
-    const pageSize = 6;
+    const pageSize = 8;
 
     let ref = firestore
       .collection("products")

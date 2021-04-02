@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import FormInput from "../forms/FormInput";
 import { CountryDropdown } from "react-country-region-selector";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import Button from "../forms/Button";
 import { apiInstance } from "../../utils";
 import {
   selectCartTotal,
   selectCartItemsCount,
   selectCartItems,
 } from "../../redux/Cart/cart.selectors";
-import { clearCart } from "../../redux/Cart/cart.actions";
+
 import { createStructuredSelector } from "reselect";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { saveOrderHistory } from "../../redux/Orders/orders.actions";
+import { TextField, Paper, Typography, Button } from "@material-ui/core";
 
 const initialAddressState = {
   line1: "",
@@ -145,55 +144,63 @@ function PaymentDetails() {
     hidePostalCode: true,
   };
   return (
-    <div className="paymentDetails">
+    <Paper className="paymentDetails">
       <form onSubmit={handleFormSubmit}>
         <div className="group">
-          <h1>Shipping Address</h1>
-          <FormInput
+          <Typography variant="h6" align="center">
+            Shipping Address
+          </Typography>
+          <TextField
+            fullWidth
             type="text"
-            placeholder="Recipient Name"
+            label="Recipient Name"
             value={recipientName}
-            handleChange={(evt) => setRecipientName(evt.target.value)}
+            onChange={(evt) => setRecipientName(evt.target.value)}
             name="recipientName"
             required
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="Line 1"
+            label="Line 1"
             value={shippingAddress.line1}
             name="line1"
-            handleChange={(evt) => handleShipping(evt)}
+            onChange={(evt) => handleShipping(evt)}
             required
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="Line 2"
+            label="Line 2"
             value={shippingAddress.line2}
             name="line2"
-            handleChange={(evt) => handleShipping(evt)}
+            onChange={(evt) => handleShipping(evt)}
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="City"
+            label="City"
             value={shippingAddress.city}
             name="city"
-            handleChange={(evt) => handleShipping(evt)}
+            onChange={(evt) => handleShipping(evt)}
             required
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="State"
+            label="State"
             value={shippingAddress.state}
             name="state"
-            handleChange={(evt) => handleShipping(evt)}
+            onChange={(evt) => handleShipping(evt)}
             required
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="Postal Code"
+            label="Postal Code"
             value={shippingAddress.postal_code}
             name="postal_code"
-            handleChange={(evt) => handleShipping(evt)}
+            onChange={(evt) => handleShipping(evt)}
             required
           />
           <div className="formRow checkoutInput">
@@ -213,52 +220,60 @@ function PaymentDetails() {
           </div>
         </div>
         <div className="group">
-          <h2>Billling Address</h2>
-          <FormInput
+          <Typography variant="h6" align="center">
+            Billling Address
+          </Typography>
+          <TextField
+            fullWidth
             type="text"
-            placeholder="Name on Card"
+            label="Name on Card"
             value={nameOnCard}
-            handleChange={(evt) => setNameOnCard(evt.target.value)}
+            onChange={(evt) => setNameOnCard(evt.target.value)}
             name="nameOnCard"
             required
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="Line 1"
+            label="Line 1"
             value={billingAdress.line1}
             name="line1"
-            handleChange={(evt) => handleBilling(evt)}
+            onChange={(evt) => handleBilling(evt)}
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="Line 2"
+            label="Line 2"
             value={billingAdress.line2}
             name="line2"
-            handleChange={(evt) => handleBilling(evt)}
+            onChange={(evt) => handleBilling(evt)}
             required
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="City"
+            label="City"
             value={billingAdress.city}
             name="city"
-            handleChange={(evt) => handleBilling(evt)}
+            onChange={(evt) => handleBilling(evt)}
             required
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="State"
+            label="State"
             value={billingAdress.state}
             name="state"
-            handleChange={(evt) => handleBilling(evt)}
+            onChange={(evt) => handleBilling(evt)}
             required
           />
-          <FormInput
+          <TextField
+            fullWidth
             type="text"
-            placeholder="Postal Code"
+            label="Postal Code"
             value={billingAdress.postal_code}
             name="postal_code"
-            handleChange={(evt) => handleBilling(evt)}
+            onChange={(evt) => handleBilling(evt)}
             required
           />
           <div className="formRow checkoutInput">
@@ -278,12 +293,22 @@ function PaymentDetails() {
           </div>
         </div>
         <div className="group">
-          <h2>Card Details</h2>
+          <Typography variant="h6" align="center">
+            Card Details
+          </Typography>
           <CardElement options={configCardElement} />
         </div>
-        <Button type="submit">Pay Now</Button>
+        <Button
+          variant="contained"
+          size="large"
+          color="primary"
+          fullWidth
+          type="submit"
+        >
+          Pay Now
+        </Button>
       </form>
-    </div>
+    </Paper>
   );
 }
 

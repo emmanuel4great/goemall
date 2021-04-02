@@ -113,12 +113,15 @@ function Header(props) {
             </li>
             {currentUser && [
               <li>
-                <Avatar
+                {/* <Avatar
                   src="/images/default_user.jpg"
                   alt=""
                   onClick={openMenu}
                   style={{ cursor: "pointer" }}
-                />
+                /> */}
+                <div className="userAvatar" onClick={openMenu}>
+                  E
+                </div>
 
                 <Menu
                   open={Boolean(anchorEl)}

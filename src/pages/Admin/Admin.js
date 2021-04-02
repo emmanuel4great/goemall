@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import Modal from "../../components/Modal";
 import FormInput from "../../components/forms/FormInput";
 import FormSelect from "../../components/forms/FormSelect";
-import Button from "../../components/forms/Button";
 
 import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,32 +12,50 @@ import {
 } from "../../redux/Products/products.actions";
 import LoadMore from "../../components/LoadMore";
 import CKEditor from "ckeditor4-react";
+import {
+  Typography,
+  Dialog,
+  Button,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  useTheme,
+} from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
 
-const Admin = (props) => {
+function Admin(props) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { products } = useSelector(mapState);
   const { data, queryDoc, isLastPage } = products;
 
   const dispatch = useDispatch();
-  const [hideModal, setHideModal] = useState(true);
+  const [modal, setModal] = useState(false);
   const [productCategory, setProductCategory] = useState("mens");
   const [productName, setProductName] = useState("");
   const [productThumbnail, setProductThumbnail] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
+  const [productPrice, setProductPrice] = useState("");
   const [productDesc, setProductDesc] = useState("");
 
-  const toggleModal = () => setHideModal(!hideModal);
+  const toggleModal = (prev) => setModal(!prev);
 
   const configModal = {
-    hideModal,
-    toggleModal,
+    open: modal,
+    onClose: toggleModal,
   };
 
   const resetForm = () => {
-    setHideModal(true);
+    toggleModal();
     setProductCategory("mens");
     setProductName("");
     setProductThumbnail("");
@@ -83,66 +99,88 @@ const Admin = (props) => {
   return (
     <div className="admin">
       <div className="callToActions">
-        <ul>
-          <li>
-            <Button onClick={() => toggleModal()}>Add new product</Button>
-          </li>
-        </ul>
+        <Button onClick={() => toggleModal()}>Add new product</Button>
       </div>
 
-      <Modal {...configModal}>
-        <div className="addNewProductForm">
-          <form onSubmit={handleSubmit}>
-            <h2>Add new product</h2>
+      <Dialog fullScreen={fullScreen} {...configModal}>
+        <DialogTitle>Add new product</DialogTitle>
+        <form onSubmit={handleSubmit}>
+          <DialogContent>
+            <div className="addNewProductForm">
+              <FormControl fullWidth>
+                <InputLabel id="category">Category</InputLabel>
+                <Select
+                  labelId="category"
+                  label="Category"
+                  onChange={(e) => setProductCategory(e.target.value)}
+                >
+                  <MenuItem value="womens">Women wear</MenuItem>
+                  <MenuItem value="mens">Men wear</MenuItem>
+                </Select>
+              </FormControl>
+              {/* <FormSelect
+                label="Category"
+                options={[
+                  {
+                    value: "mens",
+                    name: "Mens",
+                  },
+                  {
+                    value: "womens",
+                    name: "Womens",
+                  },
+                ]}
+                handleChange={(e) => setProductCategory(e.target.value)}
+              /> */}
 
-            <FormSelect
-              label="Category"
-              options={[
-                {
-                  value: "mens",
-                  name: "Mens",
-                },
-                {
-                  value: "womens",
-                  name: "Womens",
-                },
-              ]}
-              handleChange={(e) => setProductCategory(e.target.value)}
-            />
+              <TextField
+                fullWidth
+                label="Name"
+                type="text"
+                value={productName}
+                handleChange={(e) => setProductName(e.target.value)}
+              />
 
-            <FormInput
-              label="Name"
-              type="text"
-              value={productName}
-              handleChange={(e) => setProductName(e.target.value)}
-            />
+              <TextField
+                fullWidth
+                label="Main image URL"
+                type="url"
+                value={productThumbnail}
+                handleChange={(e) => setProductThumbnail(e.target.value)}
+              />
 
-            <FormInput
-              label="Main image URL"
-              type="url"
-              value={productThumbnail}
-              handleChange={(e) => setProductThumbnail(e.target.value)}
-            />
+              <TextField
+                fullWidth
+                label="Price"
+                type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
+                value={productPrice}
+                handleChange={(e) => setProductPrice(e.target.value)}
+              />
 
-            <FormInput
-              label="Price"
-              type="number"
-              min="0.00"
-              max="10000.00"
-              step="0.01"
-              value={productPrice}
-              handleChange={(e) => setProductPrice(e.target.value)}
-            />
-
-            <CKEditor
-              onChange={(evt) => setProductDesc(evt.editor.getData())}
-            />
-            <br />
-
-            <Button type="submit">Add product</Button>
-          </form>
-        </div>
-      </Modal>
+              <CKEditor
+                onChange={(evt) => setProductDesc(evt.editor.getData())}
+              />
+              <br />
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => toggleModal()} variant="outlined">
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              color="primary"
+            >
+              Add product
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
 
       <div className="manageProducts">
         <table className="results">
@@ -207,6 +245,6 @@ const Admin = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default Admin;

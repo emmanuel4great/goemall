@@ -73,32 +73,29 @@ a:hover {
 
 .main {
   width: 100%;
-  height: calc(100% - 6.5rem);
+  min-height: calc(100% - 6.5rem);
   max-width: 1450px;
-  padding: 0 10px;
-  margin: 0 auto;
+  // padding: 2rem 0;
 }
 
 .controlPanel {
   position: relative;
-  display: inline-block;
   width: 100%;
   min-height: 100%;
-  padding: 3rem 0 6rem 25rem;
-  border-bottom: 1px solid #d3d3d3;
+  display: flex;
+  margin: 1rem auto;
+  padding: 1rem;
+  // padding: 3rem 0 6rem 25rem;
 
   .sidebar {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 25rem;
     height: 100%;
-    z-index: 1;
-    border-right: 1px solid #d3d3d3;
+    margin-right: 2rem;
   }
 
   .content {
-    padding: 0 10px;
+    padding: 1rem 10px;
+    flex: 1;
   }
 }
 
@@ -107,24 +104,28 @@ a:hover {
 }
 
 .dashboardLayout {
-  height: calc(100% - 6.5rem - 5.8rem);
+  background-color: #f3f3f4;
+  // height: calc(100% - 6.5rem - 5.8rem);
 }
 
 @media only screen and (max-width: 991.99px) {
   .controlPanel {
     padding: 0 10px;
 
+    display: block;
     .sidebar {
       position: relative;
       width: 100%;
       border: none;
-      margin-bottom: 2.5rem;
+      padding: 0;
+      margin-left: 0;
+      margin-bottom: 1rem;
     }
   }
 }
 
 @media only screen and (min-width: 992px) {
   .main {
-    height: calc(100vh - 6.5rem);
+    min-height: calc(100vh - 6.5rem);
   }
 }

@@ -1,3 +1,154 @@
+$large: 992px;
+$small: 991.99px;
+
 .homepage {
-  height: calc(100% - 6.5rem - 5.8rem);
+  background-color: #f3f3f4;
+  // padding: 2rem;
+  width: 100%;
+  max-width: 1450px;
+  margin: auto;
+  padding: 0px 0px 2rem;
+  @media screen and (min-width: $large) {
+    padding: 2rem 0px;
+  }
+  .directory {
+    padding: 0 0.5rem;
+    @media screen and (min-width: $large) {
+      padding: 0 1rem;
+    }
+  }
+  .sliderWrap {
+    display: flex;
+
+    .category {
+      flex: 1;
+      background-position: center;
+      background-size: cover;
+      border-radius: 0.2rem;
+      color: white !important;
+
+      @media screen and (max-width: $small) {
+        display: none;
+      }
+    }
+
+    @media screen and (min-width: $large) {
+      padding: 0 2rem;
+
+      & > :not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+
+    .manWomanWrap {
+      @media screen and (max-width: $small) {
+        display: none;
+      }
+
+      flex: 1;
+      border-radius: 0.2rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .menSuit {
+        background-color: white;
+        position: relative;
+        img {
+          height: 210px;
+          width: 100%;
+          object-fit: auto;
+          border-radius: 0.2rem;
+        }
+        .caption {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 100px;
+          background-color: black;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .bottomBtnWrap {
+        position: absolute;
+        height: 60px;
+        width: 100%;
+        bottom: 0;
+        border-radius: 0 !important;
+        box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.3);
+
+        // backcl
+        .bottomBtn {
+          height: 60px;
+          border-radius: 0px !important;
+        }
+      }
+
+      @media screen and (min-width: $large) {
+      }
+      img {
+        height: 450px;
+      }
+    }
+  }
+  .subscriptionWrap {
+    background-color: #212121;
+    padding: 2rem;
+    margin-top: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: $small) {
+      flex-direction: column;
+    }
+
+    .formWrap {
+      padding: 2rem;
+      background-color: white;
+      width: 100%;
+      text-align: center;
+      // border-radius: 0.5rem;
+
+      @media screen and (min-width: $large) {
+        width: 40%;
+      }
+      @media screen and (max-width: $small) {
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        width: auto;
+        display: block;
+        margin: 1.5rem auto 0;
+      }
+      // border: ;
+    }
+  }
+  .brandSliderWrap {
+    width: 100%;
+    position: relative;
+    margin: auto;
+    margin-top: 1.5rem;
+    width: 80%;
+    .paper {
+      padding: 3rem;
+      margin-top: 1rem;
+    }
+    .wrap {
+      width: 50%;
+      height: 50px;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

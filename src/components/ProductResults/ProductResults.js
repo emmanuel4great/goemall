@@ -7,6 +7,14 @@ import FormSelect from "../forms/FormSelect";
 
 import { useHistory, useParams } from "react-router-dom";
 import LoadMore from "../LoadMore";
+import {
+  Typography,
+  Select,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Divider,
+} from "@material-ui/core";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -22,7 +30,11 @@ export default function ProductResults() {
 
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
-    history.push(`/search/${nextFilter}`);
+    if (nextFilter === "all") {
+      history.push(`/search`);
+    } else {
+      history.push(`/search/${nextFilter}`);
+    }
   };
 
   useEffect(() => {
@@ -39,24 +51,24 @@ export default function ProductResults() {
     );
   }
 
-  const configFilters = {
-    defaultValue: filterType,
-    options: [
-      {
-        name: "Show all",
-        value: "",
-      },
-      {
-        name: "Mens",
-        value: "mens",
-      },
-      {
-        name: "Womens",
-        value: "womens",
-      },
-    ],
-    handleChange: handleFilter,
-  };
+  // const configFilters = {
+  //   defaultValue: filterType,
+  //   options: [
+  //     {
+  //       name: "Show all",
+  //       value: "",
+  //     },
+  //     {
+  //       name: "Mens",
+  //       value: "mens",
+  //     },
+  //     {
+  //       name: "Womens",
+  //       value: "womens",
+  //     },
+  //   ],
+  //   handleChange: handleFilter,
+  // };
 
   const handleLoadMore = () => {
     dispatch(
@@ -74,12 +86,31 @@ export default function ProductResults() {
 
   return (
     <div className="products">
-      <h1>Browse Products</h1>
+      <div className="listHeader">
+        <Typography variant="h5">Browse Products</Typography>
 
-      <FormSelect {...configFilters} />
+        <div className="filterWrap">
+          <Typography variant="body1">Category:</Typography>
+          <FormControl style={{ width: 150 }} variant="outlined">
+            <InputLabel id="category">Select</InputLabel>
+            <Select
+              labelId="category"
+              value={filterType || "all"}
+              onChange={handleFilter}
+              label="Select"
+            >
+              <MenuItem value="all">All</MenuItem>
+              <MenuItem value="womens">Women wear</MenuItem>
+              <MenuItem value="mens">Men wear</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+      </div>
+      <Divider />
+      {/* <FormSelect {...configFilters} /> */}
       <div className="productResults">
         {data.map((product, pos) => {
-          const { productThumbnail, productName, productPrice } = product;
+          // const { productThumbnail, productName, productPrice } = product;
 
           const configProduct = { ...product };
           return <Product {...configProduct} />;
