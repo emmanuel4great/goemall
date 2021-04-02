@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./styles.scss";
 import { useSelector } from "react-redux";
 import { checkUserIsAmin } from "../../utils";
+import { Typography } from "@material-ui/core";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -16,11 +17,9 @@ function AdminToolbar() {
 
   return (
     <div className="adminToolbar">
-      <ul>
-        <li>
-          <Link to="/admin">My Admin</Link>
-        </li>
-      </ul>
+      <Typography variant="body1" component={Link} to="/admin">
+        Admin Panel
+      </Typography>
     </div>
   );
 }

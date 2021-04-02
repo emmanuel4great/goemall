@@ -35,6 +35,7 @@ function ProductCard() {
     return () => {
       dispatch(setProduct({}));
     };
+    // eslint-disable-next-line
   }, []);
 
   const handleAddToCart = (product) => {

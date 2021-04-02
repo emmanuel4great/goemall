@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./default.scss";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 
 // layout
 import MainLayout from "./layouts/MainLayout";
@@ -25,17 +25,27 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
 import Order from "./pages/Order";
+import { Hidden } from "@material-ui/core";
 
 function App(props) {
+  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkUserSession);
+    // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // eslint-disable-next-line
+  }, [location.pathname]);
 
   return (
     <div className="App">
-      <AdminToolbar />
+      <Hidden smDown>
+        <AdminToolbar />
+      </Hidden>
       <Switch>
         <Route
           path="/"

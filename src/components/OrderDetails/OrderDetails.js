@@ -39,7 +39,7 @@ const formatText = (columnName, columnValue) => {
     case "productPrice":
       return `$${columnValue}`;
     case "productThumbnail":
-      return <img src={columnValue} width={250} />;
+      return <img alt={columnValue} src={columnValue} width={250} />;
     default:
       return columnValue;
   }
@@ -53,6 +53,7 @@ function OrderDetails({ order }) {
     return () => {
       dispatch(setOrderDetails({}));
     };
+    // eslint-disable-next-line
   }, []);
   return (
     <TableContainer>

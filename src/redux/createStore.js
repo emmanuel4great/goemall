@@ -15,5 +15,5 @@ export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
-
-export default { store, persistor };
+const object = { store, persistor };
+export default object;

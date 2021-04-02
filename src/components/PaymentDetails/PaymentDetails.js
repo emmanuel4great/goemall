@@ -59,6 +59,7 @@ function PaymentDetails() {
     if (itemCount < 1) {
       history.push("/dashboard");
     }
+    // eslint-disable-next-line
   }, [itemCount]);
 
   const handleFormSubmit = async (evt) => {

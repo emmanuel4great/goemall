@@ -49,12 +49,14 @@ function SignUp(props) {
       resetForm();
       history.push("/");
     }
+    // eslint-disable-next-line
   }, [currentUser]);
 
   useEffect(() => {
     if (Array.isArray(userErr) && userErr.length > 0) {
       setErrors(userErr);
     }
+    // eslint-disable-next-line
   }, [userErr]);
 
   const configureAuthWrapper = {

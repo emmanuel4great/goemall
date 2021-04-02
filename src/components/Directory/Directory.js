@@ -12,8 +12,10 @@ import {
 // import ShopMen from "./../../assets/shopMens.jpg";
 // import ShopWomen from "./../../assets/shopWomens.jpg";
 import "./styles.scss";
+import { useHistory } from "react-router-dom";
 
-const Directory = (props) => {
+function Directory(props) {
+  const history = useHistory();
   const theme = useTheme();
 
   return (
@@ -29,14 +31,19 @@ const Directory = (props) => {
               />
               <div className="contentWrap">
                 <div className="makeDealTextWrap">
-                  <Typography variant="h4">New Deal</Typography>
-                  <Typography variant="h3">Womens trouser suits</Typography>
+                  <Typography variant="h6">New Deal</Typography>
+                  <Typography variant="h4">Womens trouser suits</Typography>
                 </div>
                 <div
                   className="makeDealBtnWrap"
                   style={{ backgroundColor: theme.palette.primary.main }}
                 >
-                  <Button size="large" variant="contained" color="secondary">
+                  <Button
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => history.push("/search/womens")}
+                  >
                     Make Deal
                   </Button>
                 </div>
@@ -56,15 +63,19 @@ const Directory = (props) => {
               <Typography variant="h5" align="center">
                 New Suit Arrival
               </Typography>
-              <Button color="primary" variant="contained">
-                Make Order Now
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={() => history.push("/search/mens")}
+              >
+                Browse More
               </Button>
             </div>
           </Paper>
         </Grid>
       </Grid>
       <Card className="categoryWrap">
-        <CardActionArea>
+        <CardActionArea onClick={() => history.push("/search/womens")}>
           <div className="wrap withBorder">
             <img src="/images/woman_wear_icon.png" alt="" />
             <Typography variant="h6" align="center" color="primary">
@@ -75,7 +86,7 @@ const Directory = (props) => {
             </Typography>
           </div>
         </CardActionArea>
-        <CardActionArea>
+        <CardActionArea onClick={() => history.push("/search/mens")}>
           <div className="wrap">
             <img src="/images/men_wear_icon.png" alt="" />
             <Typography variant="h6" color="primary" align="center">
@@ -121,6 +132,6 @@ const Directory = (props) => {
       </Grid>
     </div>
   );
-};
+}
 
 export default Directory;

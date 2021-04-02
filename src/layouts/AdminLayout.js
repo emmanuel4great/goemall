@@ -2,6 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signOutUserStart } from "./../redux/User/user.actions";
+import {
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from "@material-ui/core";
+import Home from "@material-ui/icons/Home";
+import ExitToApp from "@material-ui/icons/ExitToApp";
 
 import Header from "./../components/Header";
 import VerticalNav from "./../components/VerticalNav";
@@ -20,19 +29,23 @@ function AdminLayout(props) {
       <div className="controlPanel">
         <div className="sidebar">
           <VerticalNav>
-            <ul>
-              <li>
-                <Link to="/admin">Home</Link>
-              </li>
-              <li>
-                <span className="signOut" onClick={() => signOut()}>
-                  Sign Out
-                </span>
-              </li>
-            </ul>
+            <List>
+              <ListItem component={Link} to="/admin" button>
+                <ListItemIcon>
+                  <Home />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItem>
+              <ListItem onClick={() => signOut()} button>
+                <ListItemIcon>
+                  <ExitToApp />
+                </ListItemIcon>
+                <ListItemText primary="Sign Out" />
+              </ListItem>
+            </List>
           </VerticalNav>
         </div>
-        <div className="content">{props.children}</div>
+        <Paper className="content">{props.children}</Paper>
       </div>
       <Footer />
     </div>

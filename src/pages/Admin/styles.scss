@@ -2,10 +2,9 @@
   padding: 0 10px;
 
   .callToActions {
-    display: inline-block;
-    width: 100%;
-    padding: 0;
-    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 .addNewProductForm {
@@ -19,14 +18,16 @@
     margin-top: 1.5rem;
   }
   table.results {
-    border-collapse: collapse;
+    margin-bottom: 1rem;
 
     tr {
-      &:nth-child(even) {
-        background-color: #d3d3d3;
-      }
+      // &:nth-child(even) {
+      //   background-color: #d3d3d3;
+      // }
       .thumb {
-        width: 15rem;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
         margin: 0 auto;
       }
     }

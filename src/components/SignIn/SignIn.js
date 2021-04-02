@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { TextField, Button, Typography, Divider } from "@material-ui/core";
 import "./styles.scss";
 
-// import Button from "../forms/Button";
-import FormInput from "../forms/FormInput";
 import AuthWrapper from "../AuthWrapper";
 import { Link, useHistory } from "react-router-dom";
 import {
@@ -41,6 +39,7 @@ function SignIn() {
       resetForm();
       history.push("/");
     }
+    // eslint-disable-next-line
   }, [currentUser]);
 
   const configureAuthWrapper = {

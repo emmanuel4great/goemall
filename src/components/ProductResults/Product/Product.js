@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../../forms/Button";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../../redux/Cart/cart.actions";
@@ -18,9 +17,6 @@ function Product(product) {
   )
     return null;
 
-  const configAddToCartBtn = {
-    type: "button",
-  };
   const handleAddToCart = (product) => {
     if (!product) return;
     dispatch(addProduct(product));
@@ -53,12 +49,6 @@ function Product(product) {
             </li>
           </ul>
           <div className="addToCart">
-            {/* <Button
-                  {...configAddToCartBtn}
-                  onClick={() => handleAddToCart(product)}
-                >
-                  Add to cart
-                </Button> */}
             <Fab
               onClick={() => handleAddToCart(product)}
               color="primary"

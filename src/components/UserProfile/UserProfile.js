@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import userIMG from "./../../assets/user.png";
+import { Typography } from "@material-ui/core";
 
 function UserProfile(props) {
   const { currentUser } = props;
@@ -10,12 +10,14 @@ function UserProfile(props) {
     <div className="userProfile">
       <ul>
         <li>
-          <div className="img">
-            <img src={userIMG} />
+          <div className="userAvatar">
+            <Typography variant="h2">{displayName[0]}</Typography>
           </div>
         </li>
         <li>
-          <span className="displayName">{displayName && displayName}</span>
+          <Typography variant="h6" align="center">
+            {displayName && displayName}
+          </Typography>
         </li>
       </ul>
     </div>

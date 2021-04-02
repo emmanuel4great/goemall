@@ -73,40 +73,40 @@ export default function HomePage() {
           style={{ backgroundImage: "url(/images/category_layer.png)" }}
         >
           <List>
-            <ListItem button component={Link} to="/search">
+            <ListItem button component={Link} to="/search/womens">
               <ListItemText primary="Women Suit" />
               <ListItemSecondaryAction>
                 <ChevronRight />
               </ListItemSecondaryAction>
             </ListItem>
             <List component="div" disablePadding style={{ paddingLeft: 30 }}>
-              <ListItem component={Link} to="/search" button>
+              <ListItem component={Link} to="/search/womens" button>
                 <ListItemText primary="Apple Shape" />
               </ListItem>
-              <ListItem component={Link} to="/search" button>
+              <ListItem component={Link} to="/search/womens" button>
                 <ListItemText primary="Pear Shapes" />
               </ListItem>
-              <ListItem component={Link} to="/search" button>
+              <ListItem component={Link} to="/search/womens" button>
                 <ListItemText primary="Hourglass Shapes" />
               </ListItem>
             </List>
-            <ListItem button component={Link} to="/search">
+            <ListItem button component={Link} to="/search/mens">
               <ListItemText primary="Men Suit" />
               <ListItemSecondaryAction>
                 <ChevronRight />
               </ListItemSecondaryAction>
             </ListItem>
             <List component="div" disablePadding style={{ paddingLeft: 30 }}>
-              <ListItem component={Link} to="/search" button>
+              <ListItem component={Link} to="/search/mens" button>
                 <ListItemText primary="Slim Fit" />
               </ListItem>
-              <ListItem component={Link} to="/search" button>
+              <ListItem component={Link} to="/search/mens" button>
                 <ListItemText primary="Classic Fit" />
               </ListItem>
-              <ListItem component={Link} to="/search" button>
+              <ListItem component={Link} to="/search/mens" button>
                 <ListItemText primary="Shawl Fit" />
               </ListItem>
-              <ListItem component={Link} to="/search" button>
+              <ListItem component={Link} to="/search/mens" button>
                 <ListItemText primary="Unstructured Fit" />
               </ListItem>
             </List>
@@ -117,14 +117,16 @@ export default function HomePage() {
         <div className="manWomanWrap">
           <div className="menSuit">
             <img src="/images/cheap_women_suit.jpg" alt="" />
-            <div className="caption">
+            <div className="caption"></div>
+            <div className="captionText">
               <Typography variant="body1">As Cheap as</Typography>
               <Typography variant="h4">$50</Typography>
             </div>
           </div>
           <div className="menSuit">
             <img src="/images/cheap_men_suit.jpg" alt="" />
-            <div className="caption">
+            <div className="caption"></div>
+            <div className="captionText">
               <Typography variant="body1">Get as Cheap as</Typography>
               <Typography variant="h4">$45</Typography>
             </div>

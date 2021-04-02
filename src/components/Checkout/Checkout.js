@@ -40,7 +40,7 @@ function Checkout() {
                 <TableRow>
                   <TableCell align="left">Preview</TableCell>
                   <TableCell align="left">Name&nbsp;(g)</TableCell>
-                  <TableCell align="left">Quantity</TableCell>
+                  <TableCell align="center">Quantity</TableCell>
                   <TableCell align="left">Price&nbsp;($)</TableCell>
                   <TableCell align="center">Remove</TableCell>
                 </TableRow>
@@ -59,38 +59,13 @@ function Checkout() {
                   </TableCell>
                   <TableCell />
                 </TableRow>
-
-                {/* <tr>
-                <table>
-                  <tr align="right"></tr>
-                </table>
-                <td>
-                  <h3>Total: ${total}</h3>
-                </td>
-              </tr>
-              <tr>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <Button onClick={() => history.goBack()}>
-                          Continue Shopping
-                        </Button>
-                      </td>
-                      <td>
-                        <Button onClick={() => history.push("/payment")}>
-                          Checkout
-                        </Button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </tr> */}
               </TableBody>
             </Table>
           </div>
         ) : (
-          <p>{message}</p>
+          <Typography variant="body1" align="center">
+            {message}
+          </Typography>
         )}
       </div>
       {cartItems.length > 0 && (

@@ -31,19 +31,19 @@ function EmailPassword(props) {
       dispatch(restUserState());
       history.push("/login");
     }
+    // eslint-disable-next-line
   }, [resetPasswordSuccess]);
 
   useEffect(() => {
     if (Array.isArray(userErr) && userErr.length > 0) {
       setErrors(userErr);
     }
+    // eslint-disable-next-line
   }, [userErr]);
 
   const configAuthWrapper = {
     headline: "Email Password",
   };
-
-  console.log(errors);
 
   return (
     <AuthWrapper {...configAuthWrapper}>

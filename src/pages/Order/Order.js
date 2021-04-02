@@ -16,6 +16,8 @@ function Order() {
 
   useEffect(() => {
     dispatch(getOrderDetailsStart(orderID));
+
+    // eslint-disable-next-line
   }, []);
   return (
     <div>

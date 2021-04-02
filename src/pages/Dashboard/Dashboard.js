@@ -14,6 +14,7 @@ function Dashbaord() {
   const { currentUser, orderHistory } = useSelector(mapState);
   useEffect(() => {
     dispatch(getUserOrderHistory(currentUser.id));
+    // eslint-disable-next-line
   }, []);
 
   return (

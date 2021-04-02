@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-import FormInput from "../../components/forms/FormInput";
-import FormSelect from "../../components/forms/FormSelect";
-
 import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -25,8 +21,17 @@ import {
   Select,
   MenuItem,
   useTheme,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  Hidden,
+  Fab,
+  IconButton,
 } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Add from "@material-ui/icons/Add";
+import Delete from "@material-ui/icons/Delete";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -47,7 +52,9 @@ function Admin(props) {
   const [productPrice, setProductPrice] = useState("");
   const [productDesc, setProductDesc] = useState("");
 
-  const toggleModal = (prev) => setModal(!prev);
+  const toggleModal = () => {
+    setModal((prev) => !prev);
+  };
 
   const configModal = {
     open: modal,
@@ -81,6 +88,7 @@ function Admin(props) {
 
   useEffect(() => {
     dispatch(fetchProductsStart());
+    // eslint-disable-next-line
   }, []);
 
   const handleLoadMore = () => {
@@ -99,7 +107,21 @@ function Admin(props) {
   return (
     <div className="admin">
       <div className="callToActions">
-        <Button onClick={() => toggleModal()}>Add new product</Button>
+        <Typography variant="h5">Manage Products</Typography>
+        <Hidden smDown>
+          <Button
+            onClick={() => toggleModal()}
+            variant="contained"
+            color="primary"
+          >
+            Add new product
+          </Button>
+        </Hidden>
+        <Hidden mdUp>
+          <Fab onClick={() => toggleModal()}>
+            <Add />
+          </Fab>
+        </Hidden>
       </div>
 
       <Dialog fullScreen={fullScreen} {...configModal}>
@@ -118,20 +140,6 @@ function Admin(props) {
                   <MenuItem value="mens">Men wear</MenuItem>
                 </Select>
               </FormControl>
-              {/* <FormSelect
-                label="Category"
-                options={[
-                  {
-                    value: "mens",
-                    name: "Mens",
-                  },
-                  {
-                    value: "womens",
-                    name: "Womens",
-                  },
-                ]}
-                handleChange={(e) => setProductCategory(e.target.value)}
-              /> */}
 
               <TextField
                 fullWidth
@@ -170,12 +178,7 @@ function Admin(props) {
             <Button onClick={() => toggleModal()} variant="outlined">
               Cancel
             </Button>
-            <Button
-              type="submit"
-              color="primary"
-              variant="contained"
-              color="primary"
-            >
+            <Button type="submit" color="primary" variant="contained">
               Add product
             </Button>
           </DialogActions>
@@ -183,65 +186,41 @@ function Admin(props) {
       </Dialog>
 
       <div className="manageProducts">
-        <table className="results">
-          <tbody>
-            <tr>
-              <th>
-                <h1>Manage Products</h1>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <table>
-                  <tbody>
-                    {Array.isArray(data) &&
-                      data.length > 0 &&
-                      data.map((product, index) => {
-                        const {
-                          productName,
-                          productThumbnail,
-                          productPrice,
-                          documentID,
-                        } = product;
-                        return (
-                          <tr key={index}>
-                            <td>
-                              <img className="thumb" src={productThumbnail} />
-                            </td>
-                            <td>{productName}</td>
-                            <td>${productPrice}</td>
-                            <td>
-                              <Button
-                                onClick={() =>
-                                  dispatch(deleteProductStart(documentID))
-                                }
-                              >
-                                Delete
-                              </Button>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-            </tr>
-            <tr>
-              <td>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>{!isLastPage && <LoadMore {...configLoadMore} />}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <Table className="results">
+          <TableBody>
+            {Array.isArray(data) &&
+              data.length > 0 &&
+              data.map((product, index) => {
+                const {
+                  productName,
+                  productThumbnail,
+                  productPrice,
+                  documentID,
+                } = product;
+                return (
+                  <TableRow key={index}>
+                    <TableCell>
+                      <img
+                        className="thumb"
+                        src={productThumbnail}
+                        alt={productName}
+                      />
+                    </TableCell>
+                    <TableCell>{productName}</TableCell>
+                    <TableCell>${productPrice}</TableCell>
+                    <TableCell>
+                      <IconButton
+                        onClick={() => dispatch(deleteProductStart(documentID))}
+                      >
+                        <Delete />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+        {!isLastPage && <LoadMore {...configLoadMore} />}
       </div>
     </div>
   );

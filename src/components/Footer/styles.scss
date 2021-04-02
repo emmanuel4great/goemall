@@ -1,7 +1,28 @@
 .footer {
-  .wrap {
-    max-width: 1450px;
-    padding: 20px 10px;
-    margin: 0 auto;
+  background-color: rgb(8, 16, 24);
+  color: white;
+  padding: 2rem;
+  h4 {
+    font-weight: bold;
+  }
+  .listWrap {
+    margin-top: 2rem;
+    .linkContainers {
+      margin-top: 1.2rem;
+      a {
+        color: white;
+        display: block;
+        margin-bottom: 0.6rem;
+      }
+    }
+  }
+  .paymentOption {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .footerDivider {
+    background-color: white;
+    margin: 2rem 0;
   }
 }

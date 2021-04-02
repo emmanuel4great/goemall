@@ -3,40 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsStart } from "../../../redux/Products/products.actions";
 import Product from "./../../ProductResults/Product";
 
-import { useHistory, useParams } from "react-router-dom";
-import {
-  Typography,
-  Select,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Divider,
-} from "@material-ui/core";
-
 const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
 
 export default function SimilarProduct() {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { filterType } = useParams();
   const { products } = useSelector(mapState);
 
-  const { data, queryDoc, isLastPage } = products;
-
-  const handleFilter = (e) => {
-    const nextFilter = e.target.value;
-    if (nextFilter === "all") {
-      history.push(`/search`);
-    } else {
-      history.push(`/search/${nextFilter}`);
-    }
-  };
+  const { data } = products;
 
   useEffect(() => {
-    dispatch(fetchProductsStart({ filterType }));
-  }, [filterType]);
+    dispatch(fetchProductsStart());
+    // eslint-disable-next-line
+  }, []);
 
   if (!Array.isArray(data)) return null;
 
@@ -47,25 +27,6 @@ export default function SimilarProduct() {
       </div>
     );
   }
-
-  // const configFilters = {
-  //   defaultValue: filterType,
-  //   options: [
-  //     {
-  //       name: "Show all",
-  //       value: "",
-  //     },
-  //     {
-  //       name: "Mens",
-  //       value: "mens",
-  //     },
-  //     {
-  //       name: "Womens",
-  //       value: "womens",
-  //     },
-  //   ],
-  //   handleChange: handleFilter,
-  // };
 
   return (
     <div className="products">
