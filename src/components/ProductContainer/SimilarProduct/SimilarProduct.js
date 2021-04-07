@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsStart } from "../../../redux/Products/products.actions";
-import Product from "./../../ProductResults/Product";
+import ProductCard from "../../ProductCard";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -33,7 +33,7 @@ export default function SimilarProduct() {
       <div className="productResults">
         {data.map((product, pos) => {
           const configProduct = { ...product };
-          return <Product {...configProduct} />;
+          return <ProductCard {...configProduct} />;
         })}
       </div>
     </div>

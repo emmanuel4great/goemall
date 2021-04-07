@@ -1,6 +1,82 @@
-$small: 992px;
+$small: 991.99px;
+$large: 992px;
 
 .mainHeader {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+
+  .headerToolbar {
+    width: 100%;
+    justify-content: space-between !important;
+    position: relative;
+    .iconButton {
+      position: absolute;
+      left: 10px;
+      top: 20px;
+    }
+    @media screen and (max-width: $small) {
+      padding-top: 1.7rem;
+      flex-direction: column !important;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      @media screen and (max-width: $small) {
+        flex: 1;
+      }
+    }
+
+    .headerFormWrap {
+      @media screen and (max-width: $large) {
+        width: 46%;
+      }
+
+      @media screen and (max-width: $small) {
+        width: 100%;
+        margin: 1.2rem 0;
+      }
+
+      display: flex;
+      align-items: center;
+
+      .searchInputRoot {
+        margin: auto;
+        flex: 1;
+
+        .searchInput {
+          background-color: white;
+          padding: 0 10px;
+          border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px;
+          height: 40px !important;
+        }
+      }
+      .searchButton {
+        background-color: #f50057;
+        color: white;
+        height: 40px;
+        padding: 0 1rem;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+    }
+
+    .helplineCartWrap {
+      display: flex;
+      align-items: center;
+      .helplineWrap {
+        display: flex;
+        align-items: center;
+        margin-right: 2rem;
+        & > :first-child {
+          margin-right: 1rem;
+        }
+      }
+      // flex: 1;
+    }
+  }
+
   .wrap {
     max-width: 1450px;
     width: 100%;
@@ -26,6 +102,7 @@ $small: 992px;
       display: flex;
       ul {
         display: flex;
+        align-items: center;
       }
 
       ul,
@@ -50,6 +127,13 @@ $small: 992px;
           text-transform: uppercase;
           cursor: pointer;
         }
+        .cartButton {
+          @media screen and (max-width: $small) {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+          }
+        }
         .userAvatar {
           width: 40px;
           height: 40px;
@@ -67,6 +151,17 @@ $small: 992px;
         }
       }
     }
+  }
+}
+
+.headerNavWrap {
+  background-color: #fafafa;
+  align-items: stretch !important;
+  button,
+  a {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+    font-weight: bold;
   }
 }
 

@@ -1,42 +1,24 @@
-import React, { useEffect } from "react";
-import "./styles.scss";
-import { useParams, useHistory, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProductStart,
-  setProduct,
-} from "../../redux/Products/products.actions";
-
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/Cart/cart.actions";
-import { Typography, Button, Divider, Breadcrumbs } from "@material-ui/core";
-import SimilarProduct from "./SimilarProduct";
+import { Card, Fab, Typography, ButtonBase } from "@material-ui/core";
+import ShoppingCart from "@material-ui/icons/ShoppingCart";
+import StarRate from "@material-ui/icons/StarRate";
 
-const mapState = (state) => ({
-  product: state.productsData.product,
-});
-function ProductCard() {
-  const { productID } = useParams();
+import "./styles.scss";
 
-  const history = useHistory();
-
+function ProductCard(product) {
   const dispatch = useDispatch();
-  const { product } = useSelector(mapState);
-
-  const {
-    productName,
-    productThumbnail,
-    productPrice,
-    productDesc,
-    productCategory,
-  } = product;
-
-  useEffect(() => {
-    dispatch(fetchProductStart(productID));
-    return () => {
-      dispatch(setProduct({}));
-    };
-    // eslint-disable-next-line
-  }, []);
+  const history = useHistory();
+  const { documentID, productThumbnail, productName, productPrice } = product;
+  if (
+    !documentID ||
+    !productThumbnail ||
+    !productName ||
+    typeof productPrice === "undefined"
+  )
+    return null;
 
   const handleAddToCart = (product) => {
     if (!product) return;
@@ -45,79 +27,55 @@ function ProductCard() {
   };
 
   return (
-    <div className="productCard">
-      <div className="breadcrumb">
-        <Breadcrumbs aria-label="breadcrumb">
-          <Typography component={Link} color="inherit" to="/search">
-            All
-          </Typography>
-          <Typography component={Link} color="inherit" to="/search">
-            {productCategory === "mens" ? "Men" : "Women"}
-          </Typography>
-          <Typography color="textPrimary">{productName}</Typography>
-        </Breadcrumbs>
+    <Card className="productCard">
+      <div className="thumb">
+        <Link to={`/product/${documentID}`}>
+          <img src={productThumbnail} alt={productName} />
+        </Link>
       </div>
-      <div className="cardBody">
-        <div>
-          <div className="hero">
-            <img src={productThumbnail} alt={productName} />
-          </div>
-          <div className="addToCartDesktop">
-            <img src="/images/love.gif" height="30" alt="" />
-            <Typography color="textSecondary">Love it</Typography>
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              onClick={() => handleAddToCart(product)}
-            >
-              Add to cart
-            </Button>
-          </div>
-        </div>
-        <div className="productDetails">
-          <ul>
-            <li>
-              <Typography variant="h4">{productName}</Typography>
-            </li>
-            <li>
-              <Typography variant="h5" color="error">
-                ${productPrice}
-              </Typography>
-              <Divider />
-            </li>
-            <li>
-              <Typography variant="h6">Product Features</Typography>
-              <Typography
-                variant="body2"
-                dangerouslySetInnerHTML={{ __html: productDesc }}
-              />
-            </li>
-          </ul>
-          <div className="addToCart">
-            <img src="/images/love.gif" height="30" alt="" />
-            <Typography color="textSecondary">Love it</Typography>
-            <div style={{ textAlign: "right" }}>
-              <Button
-                variant="contained"
-                color="secondary"
-                size="large"
-                onClick={() => handleAddToCart(product)}
-              >
-                Add to cart
-              </Button>
+      <div className="details">
+        <div className="detailsTextWrap">
+          <Typography
+            variant="h6"
+            component={Link}
+            to={`/product/${documentID}`}
+            noWrap
+            className="name"
+          >
+            {productName}
+          </Typography>
+          <div className="priceRate">
+            <Typography variant="h6">${productPrice}</Typography>
+            <div>
+              <StarRate />
+              <StarRate />
+              <StarRate />
+              <StarRate />
+              <StarRate />
             </div>
           </div>
+
+          <ButtonBase
+            className="addToCartBtn"
+            onClick={() => handleAddToCart(product)}
+            focusRipple
+          >
+            <span>Add to Cart</span>
+            <ShoppingCart />
+          </ButtonBase>
         </div>
+        {/* <div className="addToCart">
+          <Fab
+            onClick={() => handleAddToCart(product)}
+            color="primary"
+            size="small"
+            disabledElevation
+          >
+            <ShoppingCart />
+          </Fab>
+        </div> */}
       </div>
-      <Divider />
-      <div className="similarProduct">
-        <Typography variant="h5" align="center">
-          Products you might also like
-        </Typography>
-        <SimilarProduct />
-      </div>
-    </div>
+    </Card>
   );
 }
 

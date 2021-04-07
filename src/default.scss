@@ -21,7 +21,7 @@ body,
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8rem;
   font-weight: 400;
   line-height: 1;
@@ -37,6 +37,10 @@ a:hover {
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+}
+
+button {
+  font-weight: bold !important;
 }
 
 .main {

@@ -57,15 +57,18 @@ export const handleFetchProducts = ({
 };
 
 export const handleDeleteProductStart = (documentID) => {
+  console.log(documentID);
   return new Promise((resolve, reject) => {
     firestore
       .collection("products")
       .doc(documentID)
       .delete()
-      .then(() => {
+      .then((e) => {
+        console.log(e);
         resolve();
       })
       .catch((err) => {
+        console.log(err);
         reject(err);
       });
   });

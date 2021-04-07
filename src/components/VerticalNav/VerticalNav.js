@@ -11,8 +11,6 @@ const mapState = ({ user }) => ({
 function VerticalNav({ children }) {
   const { currentUser } = useSelector(mapState);
 
-  console.log(currentUser);
-
   const configUserProfile = {
     currentUser,
   };

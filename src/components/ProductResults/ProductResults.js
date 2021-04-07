@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsStart } from "../../redux/Products/products.actions";
-import Product from "./Product";
+import ProductCard from "../ProductCard";
 
 import { useHistory, useParams } from "react-router-dom";
 import LoadMore from "../LoadMore";
@@ -91,7 +91,7 @@ export default function ProductResults() {
       <div className="productResults">
         {data.map((product, pos) => {
           const configProduct = { ...product };
-          return <Product key={pos} {...configProduct} />;
+          return <ProductCard key={pos} {...configProduct} />;
         })}
       </div>
       {!isLastPage && <LoadMore {...configLoadMore} />}

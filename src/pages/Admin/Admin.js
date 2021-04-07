@@ -146,7 +146,7 @@ function Admin(props) {
                 label="Name"
                 type="text"
                 value={productName}
-                handleChange={(e) => setProductName(e.target.value)}
+                onChange={(e) => setProductName(e.target.value)}
               />
 
               <TextField
@@ -154,7 +154,7 @@ function Admin(props) {
                 label="Main image URL"
                 type="url"
                 value={productThumbnail}
-                handleChange={(e) => setProductThumbnail(e.target.value)}
+                onChange={(e) => setProductThumbnail(e.target.value)}
               />
 
               <TextField
@@ -165,7 +165,7 @@ function Admin(props) {
                 max="10000.00"
                 step="0.01"
                 value={productPrice}
-                handleChange={(e) => setProductPrice(e.target.value)}
+                onChange={(e) => setProductPrice(e.target.value)}
               />
 
               <CKEditor

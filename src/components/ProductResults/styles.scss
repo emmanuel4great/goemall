@@ -65,36 +65,37 @@ $small: 680px;
       padding: 1rem 0;
       margin: 0 auto;
       padding: 1rem;
+      position: relative;
 
-      ul,
-      ol,
-      li {
-        padding: 0;
-        margin: 0;
-      }
-      ul {
-        li {
-          display: block;
+      .detailsTextWrap {
+        display: block;
+        width: 100%;
+        // text-align: left;
+        margin: 0 0 0.5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        a {
           width: 100%;
-          list-style-type: none;
-          text-align: left;
-          margin: 0 0 0.5rem;
-
-          a {
-            color: black;
-          }
-          .name {
-            font-size: 2.2rem;
-            line-height: 1.2;
-            font-weight: 400;
-          }
-
-          .price {
-            font-size: 1.6rem;
-            line-height: 1;
-            font-weight: 400;
-          }
+          color: black;
         }
+        .name {
+          font-size: 2.2rem;
+          line-height: 1.2;
+          font-weight: 400;
+        }
+
+        .price {
+          font-size: 1.6rem;
+          line-height: 1;
+          font-weight: 400;
+        }
+      }
+      .addToCart {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
       }
     }
   }

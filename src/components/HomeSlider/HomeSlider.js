@@ -6,26 +6,41 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
 import "./styles.scss";
+import { Button, Typography } from "@material-ui/core";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath: "slider1.jpg",
+    label: "huge Sale",
+    caption: "Up to 70% off",
+    imgPath: "banner_2.png",
   },
   {
-    label: "Bird",
-    imgPath: "slider2.jpg",
+    label: "Biggest Discount",
+    caption: "Check the promotion",
+    imgPath: "banner_2.png",
   },
   {
-    label: "Bali, Indonesia",
-    imgPath: "slider3.jpeg",
+    label: "Biggest Sales",
+    caption: "Don't miss it",
+    imgPath: "banner_2.png",
   },
   {
-    label: "NeONBRAND Digital Marketing, Las Vegas, United States",
-    imgPath: "slider4.jpg",
+    label: "Our Best Product",
+    caption: "Special Selection",
+    imgPath: "banner_2.png",
   },
+  {
+    label: "Massive Sales",
+    caption: "Only For Today",
+    imgPath: "banner_2.png",
+  },
+  // {
+  //   label: "Massive Sales",
+  //   caption: "Only For Today",
+  //   imgPath: "banner_2.png",
+  // },
 ];
 
 function HomeSlider() {
@@ -45,52 +60,39 @@ function HomeSlider() {
         enableMouseEvents
       >
         {tutorialSteps.map((step, index) => (
-          <div key={step.label}>
+          <React.Fragment key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <img
-                className="slideImage"
-                src={`/images/slider/${step.imgPath}`}
-                alt={step.label}
-              />
+              <div className="stepperWrap">
+                <div className="stepperWrapLabel">
+                  <Typography variant="h2">{step.label}</Typography>
+                  <Typography variant="h3">{step.caption}</Typography>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    color="primary"
+                    disableElevation
+                  >
+                    Shop Now
+                  </Button>
+                </div>
+                <img
+                  className="slideImage"
+                  src={`/images/slider/${step.imgPath}`}
+                  alt={step.label}
+                />
+              </div>
             ) : null}
-          </div>
+          </React.Fragment>
         ))}
       </AutoPlaySwipeableViews>
-      <div className="stepperWrap">
+      <div className="stepperDotWrap">
         <MobileStepper
           variant="dots"
-          steps={6}
+          steps={5}
+          maxStep={tutorialSteps.length}
           position="static"
           className="stepper"
           activeStep={activeStep}
-          //   nextButton={
-          //     <Button
-          //       size="small"
-          //       onClick={handleNext}
-          //       disabled={activeStep === 5}
-          //     >
-          //       Next
-          //       {theme.direction === "rtl" ? (
-          //         <KeyboardArrowLeft />
-          //       ) : (
-          //         <KeyboardArrowRight />
-          //       )}
-          //     </Button>
-          //   }
-          //   backButton={
-          //     <Button
-          //       size="small"
-          //       onClick={handleBack}
-          //       disabled={activeStep === 0}
-          //     >
-          //       {theme.direction === "rtl" ? (
-          //         <KeyboardArrowRight />
-          //       ) : (
-          //         <KeyboardArrowLeft />
-          //       )}
-          //       Back
-          //     </Button>
-          //   }
         />
       </div>
     </div>

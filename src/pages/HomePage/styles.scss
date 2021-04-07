@@ -1,15 +1,19 @@
 $large: 992px;
 $small: 991.99px;
 
+$lg: 992px;
+$md: 768px;
+$xs: 576px;
+
 .homepage {
-  background-color: #f3f3f4;
+  // background-color: #f3f3f4;
   // padding: 2rem;
   width: 100%;
   max-width: 1450px;
   margin: auto;
-  padding: 0px 0px 2rem;
+  // padding: 0px 0px 2rem;
   @media screen and (min-width: $large) {
-    padding: 2rem 0px;
+    // padding: 2rem 0px;
   }
   .directory {
     padding: 0 0.5rem;
@@ -19,26 +23,6 @@ $small: 991.99px;
   }
   .sliderWrap {
     display: flex;
-
-    .category {
-      flex: 1;
-      background-position: center;
-      background-size: cover;
-      border-radius: 0.2rem;
-      color: white !important;
-
-      @media screen and (max-width: $small) {
-        display: none;
-      }
-    }
-
-    @media screen and (min-width: $large) {
-      padding: 0 2rem;
-
-      & > :not(:last-child) {
-        margin-right: 20px;
-      }
-    }
 
     .manWomanWrap {
       @media screen and (max-width: $small) {
@@ -160,6 +144,53 @@ $small: 991.99px;
       display: flex !important;
       align-items: center;
       justify-content: center;
+    }
+  }
+  .siteFeatureWrapRoot {
+    margin-top: 3rem;
+    padding: 0 2rem;
+    .siteFeatureWrap {
+      padding: 1rem;
+      border: 1px solid rgb(229, 229, 229);
+
+      @media screen and (min-width: $large) {
+        & > :not(:last-child) {
+          border-right: 1px solid rgb(229, 229, 229);
+        }
+      }
+      @media (min-width: $xs) and (max-width: $large) {
+        & > :nth-child(odd) {
+          border-right: 1px solid rgb(229, 229, 229);
+        }
+      }
+
+      .siteFeature {
+        display: flex;
+        align-items: center;
+        .benLabel {
+          font-weight: bold;
+          color: rgba(0, 0, 0, 0.87);
+        }
+        .siteFeatureImageWrap {
+          width: 36px;
+          height: 36px;
+          margin-right: 1rem;
+          img {
+            max-width: 36px;
+            max-height: 36px;
+          }
+        }
+      }
+    }
+  }
+  .productTabs {
+    margin-top: 2rem;
+    padding: 0 2rem;
+    .productTabsPanel {
+      margin-top: 2rem;
+      .productCardWrap {
+        padding-right: 16px;
+      }
     }
   }
 }
