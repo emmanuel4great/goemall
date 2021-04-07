@@ -26,6 +26,7 @@ import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
 import Order from "./pages/Order";
 import { Hidden, CssBaseline } from "@material-ui/core";
+import Contact from "./pages/Contact";
 
 function App(props) {
   const location = useLocation();
@@ -98,6 +99,14 @@ function App(props) {
                 <Payment />
               </MainLayout>
             </WithAuth>
+          )}
+        />
+        <Route
+          path="/contact"
+          render={() => (
+            <MainLayout>
+              <Contact />
+            </MainLayout>
           )}
         />
         <Route

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import {
   AppBar,
@@ -31,12 +31,12 @@ import Person from "@material-ui/icons/Person";
 import SupervisorAccount from "@material-ui/icons/SupervisorAccount";
 import Shop from "@material-ui/icons/Shop";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
-// import Dashboard from "@material-ui/icons/Dashboard";
-// import ExitToApp from "@material-ui/icons/ExitToApp";
-// import PersonAdd from "@material-ui/icons/PersonAdd";
+import Dashboard from "@material-ui/icons/Dashboard";
+import ExitToApp from "@material-ui/icons/ExitToApp";
+import PersonAdd from "@material-ui/icons/PersonAdd";
 import Phone from "@material-ui/icons/Phone";
 
-// import { signOutUserStart } from "../../redux/User/user.actions";
+import { signOutUserStart } from "../../redux/User/user.actions";
 import {
   selectCartItemsCount,
   selectCartTotal,
@@ -55,9 +55,9 @@ const mapState2 = createStructuredSelector({
 
 function Header(props) {
   const history = useHistory();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [drawer, setDrawer] = useState(false);
-  const [menu, setMenu] = useState({ category: null });
+  const [menu, setMenu] = useState({ category: null, profile: null });
   const { currentUser, totalNumCartItems } = useSelector(mapState);
   const { total } = useSelector(mapState2);
 
@@ -69,9 +69,9 @@ function Header(props) {
     setDrawer((prev) => !prev);
   };
 
-  // const signOut = () => {
-  //   dispatch(signOutUserStart());
-  // };
+  const signOut = () => {
+    dispatch(signOutUserStart());
+  };
 
   // const openMenu = (e) => {
   //   setAnchorEl(e.currentTarget);
@@ -80,6 +80,14 @@ function Header(props) {
   //   setAnchorEl(null);
   // };
 
+  const openProfileMenu = (e) => {
+    setMenu((prev) => ({ ...prev, profile: e.currentTarget }));
+  };
+
+  const closeProfileMenu = () => {
+    setMenu((prev) => ({ ...prev, profile: null }));
+  };
+
   const toggleCollapse = () => {
     setCollapse((prev) => !prev);
   };
@@ -87,12 +95,13 @@ function Header(props) {
   const menuPushTo = (path) => () => {
     history.push(`/${path}`);
     closeCategoryMenu();
+    closeProfileMenu();
   };
 
-  // const handleSignOut = () => {
-  //   signOut();
-  //   closeMenu();
-  // };
+  const handleSignOut = () => {
+    signOut();
+    closeProfileMenu();
+  };
 
   const openCategoryMenu = (e) => {
     setMenu((prev) => ({ ...prev, category: e.currentTarget }));
@@ -148,9 +157,66 @@ function Header(props) {
                   <ShoppingCart color="inherit" />
                 </Badge>
               }
+              onClick={() => history.push("/cart")}
             >
               ${total}
             </Button>
+            <Hidden smDown>
+              <Button
+                color="inherit"
+                endIcon={<ArrowDropDown />}
+                onClick={openProfileMenu}
+              >
+                My Account
+              </Button>
+              <Menu
+                open={Boolean(menu.profile)}
+                onClose={closeProfileMenu}
+                anchorEl={menu.profile}
+                getContentAnchorEl={null}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+                onClick={() => closeProfileMenu()}
+              >
+                {currentUser ? (
+                  <>
+                    <ListItem button onClick={menuPushTo("dashboard")}>
+                      <ListItemIcon>
+                        <Dashboard />
+                      </ListItemIcon>
+                      <ListItemText primary="My Dasbhoard" />
+                    </ListItem>
+                    <ListItem button onClick={handleSignOut}>
+                      <ListItemIcon>
+                        <ExitToApp />
+                      </ListItemIcon>
+                      <ListItemText primary="Sign Out" />
+                    </ListItem>
+                  </>
+                ) : (
+                  <>
+                    <ListItem button onClick={menuPushTo("login")}>
+                      <ListItemIcon>
+                        <Person />
+                      </ListItemIcon>
+                      <ListItemText primary="Login" />
+                    </ListItem>
+                    <ListItem button onClick={menuPushTo("registration")}>
+                      <ListItemIcon>
+                        <PersonAdd />
+                      </ListItemIcon>
+                      <ListItemText primary="Register" />
+                    </ListItem>
+                  </>
+                )}
+              </Menu>
+            </Hidden>
           </div>
 
           {/* <div className="wrap">

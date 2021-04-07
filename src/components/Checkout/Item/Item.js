@@ -5,7 +5,7 @@ import {
   addProduct,
   reduceCartItem,
 } from "../../../redux/Cart/cart.actions";
-import { TableRow, TableCell, IconButton } from "@material-ui/core";
+import { TableRow, TableCell, IconButton, Typography } from "@material-ui/core";
 import Delete from "@material-ui/icons/Delete";
 import Add from "@material-ui/icons/Add";
 import Remove from "@material-ui/icons/Remove";
@@ -35,25 +35,23 @@ function Item(product) {
   return (
     <TableRow>
       <TableCell align="left">
-        <img
-          src={productThumbnail}
-          alt={productName}
-          style={{ width: 60, height: 60, objectFit: "cover" }}
-        />
+        <img src={productThumbnail} alt={productName} />
       </TableCell>
       <TableCell align="left">{productName}</TableCell>
-      <TableCell align="center">
+      <TableCell align="center" style={{ whiteSpace: "nowrap" }}>
         <IconButton onClick={() => handleReduceItem(product)}>
           <Remove />
         </IconButton>
 
-        <span>{quantity}</span>
+        <span className="tableQuantityWrap">{quantity}</span>
 
         <IconButton onClick={() => handleAddProduct(product)}>
           <Add />
         </IconButton>
       </TableCell>
-      <TableCell align="left">${productPrice}</TableCell>
+      <TableCell align="left">
+        <Typography variant="h6">${productPrice}</Typography>
+      </TableCell>
       <TableCell align="center">
         <IconButton
           color="secondary"

@@ -43,7 +43,7 @@ function SignIn() {
   }, [currentUser]);
 
   const configureAuthWrapper = {
-    headline: "LogIn",
+    headline: "Login",
   };
 
   return (

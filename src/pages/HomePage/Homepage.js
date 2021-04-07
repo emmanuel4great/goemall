@@ -406,20 +406,6 @@ export default function HomePage() {
           </Button>
         </div>
       </div>
-      <div className="brandSliderWrap">
-        <Typography variant="h5" align="center" color="textSecondary">
-          Shop By Brands
-        </Typography>
-        <Paper className="paper">
-          <Slider {...settings}>
-            {brands.map((b) => (
-              <div className="wrap">
-                <img src={`/images/brand/${b.imgPath}`} alt="" />
-              </div>
-            ))}
-          </Slider>
-        </Paper>
-      </div>
     </section>
   );
 }

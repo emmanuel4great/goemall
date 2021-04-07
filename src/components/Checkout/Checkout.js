@@ -35,7 +35,7 @@ function Checkout() {
       <div className="cart">
         {cartItems.length > 0 ? (
           <div>
-            <Table className="table">
+            <Table className="table" size="small" padding="none">
               <TableHead>
                 <TableRow>
                   <TableCell align="left">Preview</TableCell>
@@ -49,16 +49,6 @@ function Checkout() {
                 {cartItems.map((item, pos) => {
                   return <Item {...item} key={pos} />;
                 })}
-                <TableRow>
-                  <TableCell />
-                  <TableCell colSpan={2}>
-                    <b>Total</b>
-                  </TableCell>
-                  <TableCell align="right">
-                    <b>${total}</b>
-                  </TableCell>
-                  <TableCell />
-                </TableRow>
               </TableBody>
             </Table>
           </div>
@@ -74,18 +64,20 @@ function Checkout() {
             variant="outlined"
             color="secondary"
             onClick={() => history.goBack()}
-            size="large"
           >
             Continue Shopping
           </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => history.push("/payment")}
-            size="large"
-          >
-            Checkout
-          </Button>
+          <div className="totalWrap">
+            <Typography variant="h5">Total: ${total}</Typography>
+
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => history.push("/payment")}
+            >
+              Proceed to Checkout
+            </Button>
+          </div>
         </div>
       )}
     </div>

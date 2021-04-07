@@ -9,12 +9,35 @@
     overflow: auto;
     margin: 0 auto;
     table {
+      border-collapse: collapse;
       width: 100%;
+
+      td {
+        padding-top: 0;
+        padding-bottom: 0;
+        img {
+          height: 100px;
+          width: 100px;
+          object-fit: cover;
+        }
+        .tableQuantityWrap {
+          background-color: #eee;
+          padding: 10px 20px;
+        }
+      }
     }
   }
   .actionsWrap {
     display: flex;
     justify-content: space-between;
     margin-top: 3rem;
+    .totalWrap {
+      display: flex;
+      align-items: center;
+
+      & > :first-child {
+        margin-right: 1rem;
+      }
+    }
   }
 }

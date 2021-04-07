@@ -7,6 +7,8 @@ $large: 992px;
 
   .headerToolbar {
     width: 100%;
+    max-width: 1450px;
+    margin: auto;
     justify-content: space-between !important;
     position: relative;
     .iconButton {
@@ -28,7 +30,7 @@ $large: 992px;
     }
 
     .headerFormWrap {
-      @media screen and (max-width: $large) {
+      @media screen and (min-width: $large) {
         width: 46%;
       }
 
@@ -157,6 +159,8 @@ $large: 992px;
 .headerNavWrap {
   background-color: #fafafa;
   align-items: stretch !important;
+  max-width: 1450px;
+  margin: auto;
   button,
   a {
     padding-right: 2rem !important;

@@ -2,6 +2,7 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 
 import "./styles.scss";
+import CustomDivider from "../CustomDivider";
 
 export default function AuthWrapper({ headline, children }) {
   return (
@@ -19,7 +20,7 @@ export default function AuthWrapper({ headline, children }) {
               {headline}
             </Typography>
           )}
-
+          <CustomDivider />
           <div className="children">{children && children}</div>
         </div>
       </div>
