@@ -1,0 +1,20 @@
+.checkout {
+  // margin: 2rem auto;
+  padding: 1rem;
+  margin: 0 auto;
+  .cart {
+    max-width: 100rem;
+    margin-top: 1rem;
+    width: 100%;
+    overflow: auto;
+    margin: 0 auto;
+    table {
+      width: 100%;
+    }
+  }
+  .actionsWrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+  }
+}

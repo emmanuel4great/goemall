@@ -1,0 +1,97 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body,
+#root,
+.App,
+.fullHeight {
+  min-height: 100%;
+}
+
+*,
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a,
+a:hover {
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+button {
+  font-weight: bold !important;
+}
+
+.main {
+  width: 100%;
+  max-width: 1450px;
+  min-height: calc(100vh - 64px);
+}
+
+.controlPanel {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  margin: 1rem auto;
+  padding: 1rem;
+  // padding: 3rem 0 6rem 25rem;
+
+  .sidebar {
+    width: 25rem;
+    height: 100%;
+    margin-right: 2rem;
+  }
+
+  .content {
+    padding: 1rem 10px;
+    flex: 1;
+  }
+}
+
+.adminLayout {
+  background-color: #f3f3f4;
+  // height: calc(100% - 6.5rem - 5.8rem - 3.6rem);
+}
+
+.dashboardLayout {
+  background-color: #f3f3f4;
+  // height: calc(100% - 6.5rem - 5.8rem);
+}
+
+@media only screen and (max-width: 991.99px) {
+  .controlPanel {
+    padding: 0 10px;
+
+    display: block;
+    .sidebar {
+      position: relative;
+      width: 100%;
+      border: none;
+      padding: 0;
+      margin-left: 0;
+      margin-bottom: 1rem;
+    }
+  }
+}

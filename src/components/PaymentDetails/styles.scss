@@ -1,0 +1,29 @@
+.paymentDetails {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  padding: 0;
+  margin: 2rem auto;
+  padding: 1rem;
+
+  .group {
+    margin: 0 0 2rem;
+    & > :not(:last-child) {
+      margin-bottom: 0.8rem;
+    }
+
+    select {
+      display: block;
+      width: 100%;
+      font-weight: 400;
+      padding: 10px 0px;
+      // margin: 10px auto;
+      border: none;
+      border-bottom: 1px solid black;
+      outline: none;
+      background-color: transparent;
+      font-size: 1rem;
+      // color: rgba(0, 0, 0, 0.54);
+    }
+  }
+}
