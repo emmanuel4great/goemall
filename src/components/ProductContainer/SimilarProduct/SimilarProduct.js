@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsStart } from "../../../redux/Products/products.actions";
 import ProductCard from "../../ProductCard";
+import { Grid } from "@material-ui/core";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -30,12 +31,16 @@ export default function SimilarProduct() {
 
   return (
     <div className="products">
-      <div className="productResults">
+      <Grid container spacing={3}>
         {data.map((product, pos) => {
           const configProduct = { ...product };
-          return <ProductCard {...configProduct} />;
+          return (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={pos}>
+              <ProductCard {...configProduct} />
+            </Grid>
+          );
         })}
-      </div>
+      </Grid>
     </div>
   );
 }

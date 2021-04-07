@@ -222,6 +222,9 @@ $xs: 576px;
       }
       .specialDealWomanImgWrap {
         height: 450px;
+        @media (max-width: $lg) {
+          background-size: auto 70%;
+        }
       }
       .specialDealManImgWrap {
         height: 100%;

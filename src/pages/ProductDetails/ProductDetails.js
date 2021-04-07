@@ -5,7 +5,7 @@ import "./styles.scss";
 
 export default function ProductDetails() {
   return (
-    <div>
+    <div className="productDetail">
       <ProductContainer />
     </div>
   );

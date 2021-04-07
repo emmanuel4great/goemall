@@ -10,6 +10,7 @@ import {
 import { addProduct } from "../../redux/Cart/cart.actions";
 import { Typography, Button, Divider, Breadcrumbs } from "@material-ui/core";
 import SimilarProduct from "./SimilarProduct";
+import CustomDivider from "../CustomDivider";
 
 const mapState = (state) => ({
   product: state.productsData.product,
@@ -71,6 +72,7 @@ function ProductContainer() {
               color="secondary"
               size="large"
               onClick={() => handleAddToCart(product)}
+              disableElevation
             >
               Add to cart
             </Button>
@@ -104,6 +106,7 @@ function ProductContainer() {
                 color="secondary"
                 size="large"
                 onClick={() => handleAddToCart(product)}
+                disableElevation
               >
                 Add to cart
               </Button>
@@ -113,9 +116,8 @@ function ProductContainer() {
       </div>
       <Divider />
       <div className="similarProduct">
-        <Typography variant="h5" align="center">
-          Products you might also like
-        </Typography>
+        <Typography variant="h5">Products you might also like</Typography>
+        <CustomDivider />
         <SimilarProduct />
       </div>
     </div>

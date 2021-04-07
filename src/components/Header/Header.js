@@ -185,7 +185,7 @@ function Header(props) {
                 onClick={() => closeProfileMenu()}
               >
                 {currentUser ? (
-                  <>
+                  <List>
                     <ListItem button onClick={menuPushTo("dashboard")}>
                       <ListItemIcon>
                         <Dashboard />
@@ -198,9 +198,9 @@ function Header(props) {
                       </ListItemIcon>
                       <ListItemText primary="Sign Out" />
                     </ListItem>
-                  </>
+                  </List>
                 ) : (
-                  <>
+                  <List>
                     <ListItem button onClick={menuPushTo("login")}>
                       <ListItemIcon>
                         <Person />
@@ -213,7 +213,7 @@ function Header(props) {
                       </ListItemIcon>
                       <ListItemText primary="Register" />
                     </ListItem>
-                  </>
+                  </List>
                 )}
               </Menu>
             </Hidden>
