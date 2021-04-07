@@ -25,7 +25,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
 import Order from "./pages/Order";
-import { Hidden } from "@material-ui/core";
+import { Hidden, CssBaseline } from "@material-ui/core";
 
 function App(props) {
   const location = useLocation();
@@ -43,6 +43,7 @@ function App(props) {
 
   return (
     <div className="App">
+      <CssBaseline />
       <Hidden smDown>
         <AdminToolbar />
       </Hidden>

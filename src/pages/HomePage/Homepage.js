@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchProductsStart } from "../../redux/Products/products.actions";
 import ProductCard from "../../components/ProductCard";
+import ProductCardList from "../../components/ProductCardList";
 
 const brands = [
   { imgPath: "1.png" },
@@ -235,6 +236,155 @@ export default function HomePage() {
             })}
         </Slider>
       </div>
+      <div className="specialDealRootWrap">
+        <Grid container spacing={3} alignItems="stretch">
+          <Grid item xs={12} md={6}>
+            <div className="specialDealWrap">
+              <div
+                className="specialDealWomanImgWrap"
+                style={{ backgroundImage: "url(/images/women_new_deal.png)" }}
+              >
+                <Typography variant="h6">NEW WOMEN JACK</Typography>
+                <Typography variant="body1">
+                  Sale up to 30% off all products in the new collection.
+                </Typography>
+                <Typography variant="body1" component={Link} to="/search">
+                  Shop Now
+                </Typography>
+              </div>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} style={{ paddingBottom: 0 }}>
+            <Grid
+              container
+              spacing={3}
+              alignItems="stretch"
+              style={{ height: "100%" }}
+            >
+              <Grid item xs={12} sm={6}>
+                <div className="specialDealWrap">
+                  <div className="specialDealWrap">
+                    <div
+                      className="specialDealWomen2ImgWrap"
+                      style={{
+                        backgroundImage: "url(/images/women_new_deal_2.png)",
+                      }}
+                    >
+                      <Typography variant="h6">BEST WOMEN SUIT</Typography>
+                      <Typography variant="body1">Sale up to 30%.</Typography>
+                      <Typography variant="body1" component={Link} to="/search">
+                        Shop Now
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <div className="specialDealWrap">
+                  <div className="specialDealWrap">
+                    <div
+                      className="specialDealWomen2ImgWrap"
+                      style={{
+                        backgroundImage: "url(/images/men_new_deal_2.png)",
+                      }}
+                    >
+                      <Typography variant="h6">BEST MEN SUIT</Typography>
+                      <Typography variant="body1">Sale up to 30%.</Typography>
+                      <Typography variant="body1" component={Link} to="/search">
+                        Shop Now
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} style={{ paddingBottom: 0 }}>
+                <div className="specialDealWrap">
+                  <div className="specialDealWrap">
+                    <div
+                      className="specialDealManImgWrap"
+                      style={{
+                        backgroundImage: "url(/images/men_suit_deal.png)",
+                      }}
+                    >
+                      <Typography variant="h6">
+                        CASH BIG OFFER ON MAN SUIT
+                      </Typography>
+                      <Typography variant="body1">Sale up to 20%.</Typography>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        disableElevation
+                        size="large"
+                      >
+                        $66.99
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </div>
+      <div className="productStateWrapRoot">
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h6">Featured Product</Typography>
+            <div className="titleUnderline">
+              <div className="subUnderline" />
+            </div>
+            <div className="productStateList">
+              {data &&
+                data.map((product, pos) => {
+                  const configProduct = { ...product };
+                  if (pos > 2) return;
+                  return (
+                    <div className="productCardWrap">
+                      <ProductCardList {...configProduct} key={pos} />
+                    </div>
+                  );
+                })}
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h6">Top Selling Product</Typography>
+            <div className="titleUnderline">
+              <div className="subUnderline" />
+            </div>
+            <div className="productStateList">
+              {data &&
+                data.map((product, pos) => {
+                  const configProduct = { ...product };
+                  if (pos < 3 || pos > 5) return;
+                  return (
+                    <div className="productCardWrap">
+                      <ProductCardList {...configProduct} key={pos} />
+                    </div>
+                  );
+                })}
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h6">Hot Offer</Typography>
+            <div className="titleUnderline">
+              <div className="subUnderline" />
+            </div>
+            <div className="productStateList">
+              {data &&
+                data.map((product, pos) => {
+                  const configProduct = { ...product };
+                  if (pos < 5) return;
+                  return (
+                    <div className="productCardWrap">
+                      <ProductCardList {...configProduct} key={pos} />
+                    </div>
+                  );
+                })}
+            </div>
+          </Grid>
+        </Grid>
+      </div>
+
       <div className="directory">{/* <Directory /> */}</div>
       <div className="subscriptionWrap">
         <div>

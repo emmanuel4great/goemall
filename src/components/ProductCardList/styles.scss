@@ -1,0 +1,43 @@
+.productCardList {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+
+  .thumb {
+    height: 80px;
+    width: 80px;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a {
+      display: block;
+    }
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  }
+  .details {
+    flex: 1;
+    overflow: hidden;
+    .nameWrap {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      width: 100%;
+    }
+    .name {
+      font-weight: bold;
+      display: block;
+    }
+    svg {
+      color: rgb(255, 167, 38);
+    }
+  }
+}
